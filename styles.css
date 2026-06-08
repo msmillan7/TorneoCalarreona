@@ -632,7 +632,15 @@ summary {
 
 @media (max-width: 768px) {
   .hero {
-    background-image: url("assets/hero-phone.png");
+    background:
+      linear-gradient(
+        90deg,
+        rgba(14, 28, 32, 0.82) 0%,
+        rgba(14, 28, 32, 0.60) 42%,
+        rgba(14, 28, 32, 0.20) 100%
+      ),
+      url("assets/hero-phone.png");
+
     background-position: center;
     background-size: cover;
   }
