@@ -19,31 +19,35 @@ modal?.addEventListener("click", (event) => {
 });
 
 form?.addEventListener("submit", async (event) => {
-  const action = form.getAttribute("action") || "";
+  event.preventDefault();
 
-  // Mientras no se configure Formspree/Google Forms, evitamos un envío roto
-  // y mostramos el mensaje de instrucciones.
-  if (action.includes("YOUR_FORM_ID")) {
-    event.preventDefault();
-    showModal();
+  if (!form.checkValidity()) {
+    form.reportValidity();
     return;
   }
 
-  event.preventDefault();
+  const action = form.getAttribute("action") || "";
+
+  if (!action || action.includes("YOUR_FORM_ID")) {
+    alert("El formulario todavía no está conectado a Google Sheets.");
+    return;
+  }
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
 
   try {
-    const response = await fetch(action, {
+    await fetch(action, {
       method: "POST",
-      body: new FormData(form),
-      headers: { Accept: "application/json" }
+      mode: "no-cors",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      }
     });
 
-    if (response.ok) {
-      form.reset();
-      showModal();
-    } else {
-      alert("No se pudo enviar la inscripción. Revisa los datos o inténtalo de nuevo.");
-    }
+    form.reset();
+    showModal();
   } catch (error) {
     alert("No se pudo enviar la inscripción. Comprueba tu conexión e inténtalo de nuevo.");
   }
