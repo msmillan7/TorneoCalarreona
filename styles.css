@@ -632,7 +632,8 @@ summary {
 
 @media (max-width: 768px) {
   .hero {
-    background-position: right center;
+    background-image: url("assets/hero-phone.png");
+    background-position: center;
     background-size: cover;
   }
 }
