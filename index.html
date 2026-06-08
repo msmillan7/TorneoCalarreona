@@ -265,18 +265,32 @@
         <p class="eyebrow">Estado de inscripciones</p>
         <h2>Equipos registrados</h2>
         <p>
-          Las parejas inscritas aparecerán aquí una vez recibida la inscripción.
-          La confirmación se realizará tras verificar el pago por Bizum.
+          Las parejas inscritas aparecerán aquí una vez recibida la inscripción con el estado "Pendiente".
+          Una vez recibido y verificado el pago completo por Bizum, el estado aparecerá como "Confirmado".
         </p>
       </div>
 
       <div class="registration-summary">
+        <span><strong>Inscritas:</strong> <span id="registeredCount">0</span> / 20</span>
+        <span class="summary-highlight"><strong>Quedan:</strong> <span id="availableCount">20</span> plazas</span>
+      </div>
+
+      <div id="registeredTeams" class="registered-teams">
+        <div class="team-card pending">
+          <div class="team-info">
+            <span class="team-number">1</span>
+            <span class="team-name">¡Sé la primera pareja inscrita!</span>
+          </div>
+          <span class="team-status">Disponible</span>
+        </div>
+      </div>
+
+      <!--<div class="registration-summary">
         <span><strong>Inscritas:</strong> 0 / 20</span>
         <span class="summary-highlight"><strong>Quedan:</strong> 20 plazas</span>
       </div>
 
       <div class="registered-teams">
-        <!--
         <div class="team-card confirmed">
           <div class="team-info">
             <span class="team-number">1</span>
@@ -292,13 +306,13 @@
           </div>
           <span class="team-status">Confirmada</span>
         </div>
-        -->
+        
         <div class="team-card">
           <div class="team-info">
             <span class="team-number">0</span>
             <span class="team-name">¡Sé la primera pareja inscrita!</span>
           </div>
-        </div>
+        </div>-->
       </div>
     </section>
 
