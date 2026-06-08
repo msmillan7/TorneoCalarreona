@@ -630,12 +630,12 @@ summary {
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 768px) {
   .hero {
-    min-height: auto;
-    padding: 18px;
-    background-position: 92% center;
+    background-position: right center;
+    background-size: cover;
   }
+}
 
   .nav {
     align-items: flex-start;
