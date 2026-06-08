@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Torneo Calarreona 2026</title>
+  <meta name="description" content="Inscripción al Torneo Calarreona 2026. Registro por pareja y confirmación mediante Bizum." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <a class="brand" href="#inicio">Calarreona 2026</a>
+      <div class="nav-links">
+        <a href="#info">Info</a>
+        <a href="#inscripcion">Inscripción</a>
+        <a href="#pago">Pago</a>
+      </div>
+    </nav>
+
+    <section id="inicio" class="hero-content">
+      <p class="eyebrow">Vóley playa · Águilas</p>
+      <h1>Torneo Calarreona 2026</h1>
+      <p class="subtitle">Inscripción por pareja. Pago por Bizum. Plaza confirmada tras validación manual.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#inscripcion">Inscribir pareja</a>
+        <a class="btn btn-secondary" href="#info">Ver información</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="info" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Información general</p>
+        <h2>Un torneo sencillo, claro y bien organizado</h2>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="card-icon">📍</span>
+          <h3>Lugar</h3>
+          <p>Playa de Calarreona, Águilas.</p>
+        </article>
+
+        <article class="card">
+          <span class="card-icon">📅</span>
+          <h3>Fecha</h3>
+          <p>Próximamente confirmaremos fecha y horarios oficiales.</p>
+        </article>
+
+        <article class="card">
+          <span class="card-icon">👥</span>
+          <h3>Inscripción</h3>
+          <p>Solo una persona registra a la pareja completa.</p>
+        </article>
+
+        <article class="card">
+          <span class="card-icon">💸</span>
+          <h3>Pago</h3>
+          <p>El pago se realiza por Bizum y se valida manualmente.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-highlight">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Cómo funciona</p>
+          <h2>Proceso de inscripción</h2>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <strong>Rellena el formulario</strong>
+            <span>Una sola inscripción por pareja.</span>
+          </li>
+          <li>
+            <strong>Haz el Bizum</strong>
+            <span>Indica el nombre de la pareja o de ambos jugadores en el concepto.</span>
+          </li>
+          <li>
+            <strong>Validación manual</strong>
+            <span>La organización confirmará la plaza cuando vea el pago.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="inscripcion" class="section">
+      <div class="form-wrapper">
+        <div class="form-intro">
+          <p class="eyebrow">Registro</p>
+          <h2>Inscripción de pareja</h2>
+          <p>
+            Completa los datos de ambos jugadores. Después de enviar el formulario,
+            realiza el Bizum para que podamos confirmar la plaza.
+          </p>
+
+          <div class="notice">
+            <strong>Importante:</strong> solo debe apuntarse una persona de la pareja.
+          </div>
+        </div>
+
+        <!--
+          OPCIÓN ACTUAL:
+          Este formulario está preparado para servicios como Formspree.
+          1) Crea un endpoint en https://formspree.io/
+          2) Sustituye YOUR_FORM_ID por tu ID real.
+          3) Las respuestas te llegarán por email y/o podrás exportarlas.
+
+          Si prefieres Google Forms, sustituimos este bloque por el formulario embebido.
+        -->
+        <form id="registrationForm" class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <fieldset>
+            <legend>Jugador/a 1</legend>
+
+            <label>
+              Nombre y apellidos *
+              <input type="text" name="jugador_1_nombre" required autocomplete="name" />
+            </label>
+
+            <div class="grid-two">
+              <label>
+                Teléfono *
+                <input type="tel" name="jugador_1_telefono" required autocomplete="tel" />
+              </label>
+
+              <label>
+                Email *
+                <input type="email" name="jugador_1_email" required autocomplete="email" />
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Jugador/a 2</legend>
+
+            <label>
+              Nombre y apellidos *
+              <input type="text" name="jugador_2_nombre" required />
+            </label>
+
+            <div class="grid-two">
+              <label>
+                Teléfono
+                <input type="tel" name="jugador_2_telefono" />
+              </label>
+
+              <label>
+                Email
+                <input type="email" name="jugador_2_email" />
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Datos de la inscripción</legend>
+
+            <div class="grid-two">
+              <label>
+                Categoría *
+                <select name="categoria" required>
+                  <option value="">Selecciona una categoría</option>
+                  <option value="Mixto">Mixto</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Iniciación">Iniciación</option>
+                  <option value="Avanzado">Avanzado</option>
+                </select>
+              </label>
+
+              <label>
+                Nombre de pareja/equipo
+                <input type="text" name="nombre_pareja" placeholder="Opcional" />
+              </label>
+            </div>
+
+            <label>
+              Comentarios
+              <textarea name="comentarios" rows="4" placeholder="Disponibilidad, observaciones, etc."></textarea>
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" name="condiciones" required />
+              <span>Acepto que la inscripción queda pendiente hasta que la organización confirme el Bizum.</span>
+            </label>
+          </fieldset>
+
+          <input type="hidden" name="estado" value="Pendiente de pago" />
+
+          <button class="btn btn-primary btn-full" type="submit">Enviar inscripción</button>
+
+          <p class="form-note">
+            Al enviar, verás las instrucciones de Bizum. La plaza no queda confirmada automáticamente.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <section id="pago" class="section section-payment">
+      <div class="payment-card">
+        <p class="eyebrow">Pago por Bizum</p>
+        <h2>Confirmación de plaza</h2>
+        <p>
+          Tras enviar el formulario, realiza el Bizum al número indicado por la organización.
+          En el concepto escribe el nombre de la pareja o los nombres de ambos jugadores.
+        </p>
+
+        <div class="bizum-box">
+          <span>Número Bizum</span>
+          <strong>XXX XXX XXX</strong>
+        </div>
+
+        <p class="small">
+          Sustituye este número por el real antes de publicar la web.
+        </p>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <div class="section-heading">
+        <p class="eyebrow">Dudas frecuentes</p>
+        <h2>Antes de apuntarte</h2>
+      </div>
+
+      <details>
+        <summary>¿Tiene que apuntarse cada jugador por separado?</summary>
+        <p>No. Solo una persona debe inscribir a la pareja completa.</p>
+      </details>
+
+      <details>
+        <summary>¿La plaza queda confirmada al enviar el formulario?</summary>
+        <p>No. Queda pendiente hasta que la organización revise el Bizum y acepte la inscripción.</p>
+      </details>
+
+      <details>
+        <summary>¿Qué pongo en el concepto del Bizum?</summary>
+        <p>El nombre de la pareja/equipo o los nombres de ambos jugadores.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Torneo Calarreona · Organización del torneo</p>
+  </footer>
+
+  <div id="successModal" class="modal" hidden>
+    <div class="modal-card">
+      <button class="modal-close" type="button" aria-label="Cerrar">×</button>
+      <h2>Inscripción recibida</h2>
+      <p>
+        Gracias. Ahora realiza el Bizum indicando en el concepto el nombre de la pareja
+        o los nombres de ambos jugadores.
+      </p>
+      <p class="modal-bizum">Bizum: <strong>XXX XXX XXX</strong></p>
+      <p class="small">La plaza quedará confirmada cuando la organización revise el pago.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
