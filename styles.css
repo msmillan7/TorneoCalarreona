@@ -596,6 +596,12 @@ summary {
   text-decoration: underline;
 }
 
+.btn:disabled {
+  opacity: 0.75;
+  cursor: wait;
+  transform: none;
+}
+
 @media (max-width: 900px) {
   .cards,
   .form-wrapper,

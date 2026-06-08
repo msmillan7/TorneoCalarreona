@@ -1,6 +1,7 @@
 const form = document.querySelector("#registrationForm");
 const modal = document.querySelector("#successModal");
 const closeModal = document.querySelector(".modal-close");
+const submitButton = document.querySelector("#submitButton");
 
 function showModal() {
   modal.hidden = false;
@@ -8,6 +9,10 @@ function showModal() {
 
 function hideModal() {
   modal.hidden = true;
+
+  setTimeout(() => {
+    loadRegisteredTeams();
+  }, 50);
 }
 
 closeModal?.addEventListener("click", hideModal);
@@ -20,6 +25,9 @@ modal?.addEventListener("click", (event) => {
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Enviando inscripción...";
 
   if (!form.checkValidity()) {
     form.reportValidity();
@@ -48,7 +56,12 @@ form?.addEventListener("submit", async (event) => {
 
     form.reset();
     showModal();
+    loadRegisteredTeams();
+    submitButton.disabled = false;
+    submitButton.textContent = "Enviar inscripción";
   } catch (error) {
+    submitButton.disabled = false;
+    submitButton.textContent = "Enviar inscripción";
     alert("No se pudo enviar la inscripción. Comprueba tu conexión e inténtalo de nuevo.");
   }
 });
