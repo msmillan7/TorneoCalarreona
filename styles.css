@@ -634,6 +634,7 @@ summary {
   .hero {
     min-height: auto;
     padding: 18px;
+    background-position: 75% center;
   }
 
   .nav {
