@@ -447,6 +447,54 @@ textarea:focus {
   flex-shrink: 0;
 }
 
+.poster-card {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 3rem;
+  align-items: center;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.poster-image {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  display: block;
+}
+
+.poster-image:hover {
+  transform: scale(1.02);
+}
+
+.poster-content h3 {
+  margin-bottom: 1rem;
+}
+
+.poster-details {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.poster-details li {
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .poster-card {
+    grid-template-columns: 1fr;
+  }
+
+  .poster-image {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
 .section-payment {
   padding-top: 20px;
 }
