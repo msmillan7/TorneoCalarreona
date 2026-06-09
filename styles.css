@@ -682,7 +682,6 @@ summary {
     background-position: center;
     background-size: cover;
   }
-}
 
   .nav {
     align-items: flex-start;
@@ -702,4 +701,22 @@ summary {
   .cards {
     grid-template-columns: 1fr;
   }
+  
 }
+
+@media (max-width: 620px) {
+  .registration-summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .registration-summary span {
+    width: 100%;
+    border-radius: 18px;
+    text-align: center;
+    padding: 12px 16px;
+  }
+}
+
+
