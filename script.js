@@ -1,7 +1,32 @@
+const CONFIG = window.TOURNAMENT_CONFIG;
+
 const form = document.querySelector("#registrationForm");
 const modal = document.querySelector("#successModal");
 const closeModal = document.querySelector(".modal-close");
 const submitButton = document.querySelector("#submitButton");
+
+const registeredTeamsContainer = document.querySelector("#registeredTeams");
+const registeredCount = document.querySelector("#registeredCount");
+const availableCount = document.querySelector("#availableCount");
+const maxTeams = document.querySelector("#maxTeams");
+
+const DEFAULT_SUBMIT_TEXT = "Enviar inscripción";
+const LOADING_SUBMIT_TEXT = "Enviando inscripción...";
+
+if (form) {
+  form.action = CONFIG.registrationsApi;
+}
+
+if (maxTeams) {
+  maxTeams.textContent = CONFIG.maxTeams;
+}
+
+function setSubmitLoading(isLoading) {
+  if (!submitButton) return;
+
+  submitButton.disabled = isLoading;
+  submitButton.textContent = isLoading ? LOADING_SUBMIT_TEXT : DEFAULT_SUBMIT_TEXT;
+}
 
 function showModal() {
   modal.hidden = false;
@@ -9,10 +34,11 @@ function showModal() {
 
 function hideModal() {
   modal.hidden = true;
+  setSubmitLoading(false);
 
   setTimeout(() => {
     loadRegisteredTeams();
-  }, 50);
+  }, 500);
 }
 
 closeModal?.addEventListener("click", hideModal);
@@ -26,26 +52,23 @@ modal?.addEventListener("click", (event) => {
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  submitButton.disabled = true;
-  submitButton.textContent = "Enviando inscripción...";
-
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
   }
 
-  const action = form.getAttribute("action") || "";
-
-  if (!action || action.includes("YOUR_FORM_ID")) {
+  if (!CONFIG.registrationsApi) {
     alert("El formulario todavía no está conectado a Google Sheets.");
     return;
   }
+
+  setSubmitLoading(true);
 
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
   try {
-    await fetch(action, {
+    await fetch(CONFIG.registrationsApi, {
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify(data),
@@ -56,40 +79,55 @@ form?.addEventListener("submit", async (event) => {
 
     form.reset();
     showModal();
-    loadRegisteredTeams();
-    submitButton.disabled = false;
-    submitButton.textContent = "Enviar inscripción";
+
+    setTimeout(() => {
+      loadRegisteredTeams();
+    }, 500);
   } catch (error) {
-    submitButton.disabled = false;
-    submitButton.textContent = "Enviar inscripción";
+    setSubmitLoading(false);
     alert("No se pudo enviar la inscripción. Comprueba tu conexión e inténtalo de nuevo.");
   }
 });
 
-const registrationsUrl = form?.getAttribute("action");
+function renderEmptyState() {
+  if (!registeredTeamsContainer) return;
+
+  registeredTeamsContainer.innerHTML = `
+    <div class="team-card pending">
+      <div class="team-info">
+        <span class="team-number">1</span>
+        <span class="team-name">¡Sé la primera pareja inscrita!</span>
+      </div>
+      <span class="team-status">Disponible</span>
+    </div>
+  `;
+}
 
 async function loadRegisteredTeams() {
-  const container = document.querySelector("#registeredTeams");
-  const registeredCount = document.querySelector("#registeredCount");
-  const availableCount = document.querySelector("#availableCount");
-
-  if (!container || !registrationsUrl) return;
+  if (!registeredTeamsContainer || !CONFIG.registrationsApi) return;
 
   try {
-    const response = await fetch(registrationsUrl);
+    const response = await fetch(CONFIG.registrationsApi);
     const teams = await response.json();
 
-    registeredCount.textContent = teams.length;
-    availableCount.textContent = Math.max(20 - teams.length, 0);
+    if (registeredCount) {
+      registeredCount.textContent = teams.length;
+    }
+
+    if (availableCount) {
+      availableCount.textContent = Math.max(CONFIG.maxTeams - teams.length, 0);
+    }
 
     if (teams.length === 0) {
+      renderEmptyState();
       return;
     }
 
-    container.innerHTML = "";
+    registeredTeamsContainer.innerHTML = "";
 
     teams.forEach((team) => {
-      const isConfirmed = team.status.toLowerCase().includes("confirm");
+      const status = (team.status || "").toLowerCase();
+      const isConfirmed = status.includes("confirm");
 
       const card = document.createElement("div");
       card.className = `team-card ${isConfirmed ? "confirmed" : "pending"}`;
@@ -102,7 +140,7 @@ async function loadRegisteredTeams() {
         <span class="team-status">${isConfirmed ? "Confirmado" : "Pendiente"}</span>
       `;
 
-      container.appendChild(card);
+      registeredTeamsContainer.appendChild(card);
     });
   } catch (error) {
     console.error("No se pudieron cargar las parejas registradas", error);

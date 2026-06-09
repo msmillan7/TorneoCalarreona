@@ -56,12 +56,8 @@
       <div class="hero-info">
         <span>📅 18 julio 2026</span>
         <span>📍 Playa de Calarreona, Águilas (Murcia)</span>
-        <span>💰 15 € por jugador</span>
+        <span>💰 12 € por jugador</span>
       </div>
-
-      <p class="spots-info">
-        Máximo 20 parejas participantes
-      </p>
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="#inscripcion">Inscribir pareja</a>
@@ -94,7 +90,7 @@
         <article class="card">
           <span class="card-icon">📅</span>
           <h3>Fecha</h3>
-          <p>18 de julio de 2026. Horarios oficiales próximamente.</p>
+          <p>18 de julio de 2026. Primer saque a las 9:00 AM.</p>
         </article>
 
         <article class="card">
@@ -110,7 +106,7 @@
         <article class="card">
           <span class="card-icon">💸</span>
           <h3>Pago</h3>
-          <p>Precio: 15 € por jugador. Pago por Bizum.</p>
+          <p>Precio: 12 € por jugador. Pago por Bizum.</p>
         </article>
 
         <article class="card">
@@ -149,7 +145,6 @@
         >
           📄 Descargar cartel
         </a>
-        </div>
       </div>
     </section>
 
@@ -184,7 +179,7 @@
           <h2>Inscripción de pareja</h2>
           <p>
             Completa los datos de ambos jugadores. Después de enviar el formulario,
-            realiza el Bizum de 30 € (15 € por jugador) para que podamos confirmar la plaza.
+            realiza el Bizum de 24 € (12 € por jugador) para que podamos confirmar la plaza.
           </p>
 
           <div class="notice">
@@ -192,7 +187,7 @@
           </div>
         </div>
 
-        <form id="registrationForm" class="form" action="https://script.google.com/macros/s/AKfycbxHCtBv5Wn8cq4_KHy92jfNITpKXPS-wHUk5efgfrYdJvUiLE-xBYm6seev8wNHdXlTKQ/exec" method="POST">
+        <form id="registrationForm" class="form" method="POST">
           <fieldset>
             <legend>Jugador/a 1</legend>
 
@@ -273,8 +268,14 @@
       </div>
 
       <div class="registration-summary">
-        <span><strong>Inscritas:</strong> <span id="registeredCount">0</span> / 20</span>
-        <span class="summary-highlight"><strong>Quedan:</strong> <span id="availableCount">20</span> plazas</span>
+        <span>
+          <strong>Inscritas:</strong>
+          <span id="registeredCount">0</span> / <span id="maxTeams"16</span>
+        </span>
+        <span class="summary-highlight">
+          <strong>Quedan:</strong>
+          <span id="availableCount">16</span> plazas
+        </span>
       </div>
 
       <div id="registeredTeams" class="registered-teams">
@@ -286,36 +287,6 @@
           <span class="team-status">Disponible</span>
         </div>
       </div>
-
-      <!--<div class="registration-summary">
-        <span><strong>Inscritas:</strong> 0 / 20</span>
-        <span class="summary-highlight"><strong>Quedan:</strong> 20 plazas</span>
-      </div>
-
-      <div class="registered-teams">
-        <div class="team-card confirmed">
-          <div class="team-info">
-            <span class="team-number">1</span>
-            <span class="team-name">NombreXX ApellidoXX / NombreYY ApellidoYY</span>
-          </div>
-          <span class="team-status">Confirmada</span>
-        </div>
-
-        <div class="team-card confirmed">
-          <div class="team-info">
-            <span class="team-number">2</span>
-            <span class="team-name">NombreMM ApellidoMM / NombreNN ApellidoNN</span>
-          </div>
-          <span class="team-status">Confirmada</span>
-        </div>
-        
-        <div class="team-card">
-          <div class="team-info">
-            <span class="team-number">0</span>
-            <span class="team-name">¡Sé la primera pareja inscrita!</span>
-          </div>
-        </div>-->
-      </div>
     </section>
 
     <section id="pago" class="section section-payment">
@@ -323,7 +294,7 @@
         <p class="eyebrow">Pago por Bizum</p>
         <h2>Confirmación de plaza</h2>
         <p>
-          Tras enviar el formulario, realiza el Bizum de 30 € al número indicado por la organización.
+          Tras enviar el formulario, realiza el Bizum de 24 € al número indicado por la organización.
           En el concepto escribe los nombres de ambos jugadores.
         </p>
 
@@ -373,14 +344,52 @@
   <div id="successModal" class="modal" hidden>
     <div class="modal-card">
       <button class="modal-close" type="button" aria-label="Cerrar">×</button>
-      <h2>Inscripción recibida</h2>
+      <h2>🎉 ¡Pareja inscrita!</h2>
       <p>
-        Gracias. Ahora realiza el Bizum de 30 € (15 € por jugador) indicando en el concepto los nombres de ambos jugadores.
+        Para asegurar vuestra plaza, realizad el Bizum de
+        <strong>24 €</strong> (<strong>12 € por jugador</strong>)
+        indicando en el concepto los nombres de ambos jugadores.
       </p>
-      <p class="modal-bizum">Bizum: <strong>686 816 217</strong></p>
-      <p class="small">La plaza quedará confirmada cuando la organización revise el pago.</p>
+
+      <p class="modal-bizum">
+        Bizum: <strong>686 816 217</strong>
+      </p>
+
+      <div class="review-message">
+        <img
+          src="assets/mancos.png"
+          alt="Equipo organizador"
+          class="review-avatar"
+        />
+
+        <p>
+          En cuanto nuestro equipo de <strong>mancos</strong> revise el pago,
+          vuestra inscripción quedará confirmada.
+        </p>
+      </div>
+      <p class="small">
+        🏐 ¡Nos vemos en la arena!
+      </p>
     </div>
   </div>
+
+  <script>
+    window.TOURNAMENT_CONFIG = {
+      maxTeams: 16,
+      pricePerPlayer: 12,
+      pricePerTeam: 24,
+
+      tournamentDate: "18 julio 2026",
+      bizumNumber: "686 816 217",
+
+      posterImage: "assets/cartel-calarreona-2026.png",
+      heroDesktop: "assets/hero.png",
+      heroMobile: "assets/hero-phone.png",
+
+      registrationsApi:
+        "https://script.google.com/macros/s/AKfycbxHCtBv5Wn8cq4_KHy92jfNITpKXPS-wHUk5efgfrYdJvUiLE-xBYm6seev8wNHdXlTKQ/exec"
+    };
+  </script>
 
   <script src="script.js"></script>
 </body>

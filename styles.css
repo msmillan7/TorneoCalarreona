@@ -602,6 +602,38 @@ summary {
   transform: none;
 }
 
+.review-message {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 1rem;
+
+  color: #6f7c82;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.review-message p {
+  margin: 0;
+}
+
+.review-message strong {
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.review-avatar {
+  width: 100px;
+  height: auto;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+
+  transform: rotate(-4deg);
+}
+
 @media (max-width: 900px) {
   .cards,
   .form-wrapper,
