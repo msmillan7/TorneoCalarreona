@@ -427,6 +427,15 @@ textarea:focus {
   color: #8a5a00;
 }
 
+.team-card.denied {
+  border-left: 4px solid #dc2626;
+}
+
+.team-card.denied .team-status {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
 .team-info {
   display: flex;
   align-items: center;

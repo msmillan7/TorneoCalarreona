@@ -127,17 +127,27 @@ async function loadRegisteredTeams() {
 
     teams.forEach((team) => {
       const status = (team.status || "").toLowerCase();
-      const isConfirmed = status.includes("confirm");
+
+      let cssClass = "pending";
+      let statusText = "Pendiente";
+
+      if (status.includes("confirm")) {
+        cssClass = "confirmed";
+        statusText = "Confirmado";
+      } else if (status.includes("deneg")) {
+        cssClass = "denied";
+        statusText = "Denegado";
+      }
 
       const card = document.createElement("div");
-      card.className = `team-card ${isConfirmed ? "confirmed" : "pending"}`;
+      card.className = `team-card ${cssClass}`;
 
       card.innerHTML = `
         <div class="team-info">
           <span class="team-number">${team.number}</span>
           <span class="team-name">${team.player1} / ${team.player2}</span>
         </div>
-        <span class="team-status">${isConfirmed ? "Confirmado" : "Pendiente"}</span>
+        <span class="team-status">${statusText}</span>
       `;
 
       registeredTeamsContainer.appendChild(card);
