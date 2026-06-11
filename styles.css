@@ -507,13 +507,13 @@ textarea:focus {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 58px;
-  height: 58px;
+  width: 30px;
+  height: 30px;
   border-radius: 10px;
   overflow: hidden;
   background: white;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  font-weight: 800;
+  font-weight: 600;
   flex-shrink: 0;
 }
 
@@ -521,30 +521,30 @@ textarea:focus {
   width: 100%;
   background: var(--coral);
   color: white;
-  font-size: 0.72rem;
+  font-size: 0.5rem;
   line-height: 1;
   text-align: center;
-  padding: 6px 0 5px;
+  padding: 3px 0 3px;
 }
 
 .calendar-day {
   color: var(--ink);
-  font-size: 1.55rem;
-  line-height: 1.15;
+  font-size: 0.7rem;
+  line-height: 1;
 }
 
 .card .calendar-icon {
-  margin-bottom: 14px;
+  margin-bottom: 13px;
 }
 
 .hero-date .calendar-icon {
-  width: 24px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
 }
 
 .hero-date .calendar-month {
   font-size: 0.3rem;
-  padding: 1px 0;
+  padding: 0.7px 0;
 }
 
 .hero-date .calendar-day {
