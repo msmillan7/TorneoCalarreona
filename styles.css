@@ -728,6 +728,16 @@ summary {
   transform: translateY(-2px);
 }
 
+.back-to-top {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 @media (max-width: 900px) {
   .form-wrapper,
   .section-highlight .split {

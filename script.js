@@ -157,4 +157,14 @@ async function loadRegisteredTeams() {
   }
 }
 
+window.addEventListener("scroll", () => {
+  const button = document.querySelector(".back-to-top");
+
+  if (window.scrollY > 700) {
+    button.classList.add("visible");
+  } else {
+    button.classList.remove("visible");
+  }
+});
+
 loadRegisteredTeams();
