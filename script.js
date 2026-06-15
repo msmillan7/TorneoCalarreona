@@ -38,7 +38,7 @@ function hideModal() {
 
   setTimeout(() => {
     loadRegisteredTeams();
-  }, 500);
+  }, 300);
 }
 
 closeModal?.addEventListener("click", hideModal);
@@ -68,7 +68,9 @@ form?.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(formData.entries());
 
   try {
-    await fetch(CONFIG.registrationsApi, {
+    data.type = "team";
+
+      await fetch(CONFIG.registrationsApi, {
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify(data),
@@ -82,7 +84,7 @@ form?.addEventListener("submit", async (event) => {
 
     setTimeout(() => {
       loadRegisteredTeams();
-    }, 500);
+    }, 300);
   } catch (error) {
     setSubmitLoading(false);
     alert("No se pudo enviar la inscripción. Comprueba tu conexión e inténtalo de nuevo.");
@@ -168,3 +170,101 @@ window.addEventListener("scroll", () => {
 });
 
 loadRegisteredTeams();
+
+const freeAgentForm = document.querySelector("#freeAgentForm");
+const freeAgentsList = document.querySelector("#freeAgentsList");
+const freeAgentButton = document.querySelector("#freeAgentButton");
+
+freeAgentForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!freeAgentForm.checkValidity()) {
+    freeAgentForm.reportValidity();
+    return;
+  }
+
+  freeAgentButton.disabled = true;
+  freeAgentButton.textContent = "Publicando...";
+
+  const formData = new FormData(freeAgentForm);
+  const data = Object.fromEntries(formData.entries());
+
+  data.type = "freeAgent";
+
+  try {
+    await fetch(CONFIG.registrationsApi, {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      }
+    });
+
+    freeAgentForm.reset();
+
+    setTimeout(() => {
+      loadFreeAgents();
+    }, 300);
+
+  } finally {
+    freeAgentButton.disabled = false;
+    freeAgentButton.textContent = "Buscar pareja";
+  }
+});
+
+async function loadFreeAgents() {
+  if (!freeAgentsList || !CONFIG.registrationsApi) return;
+
+  try {
+    const response = await fetch(`${CONFIG.registrationsApi}?type=freeAgents`);
+    const players = await response.json();
+
+    freeAgentsList.innerHTML = "";
+
+    if (players.length === 0) {
+      freeAgentsList.innerHTML = `
+        <div class="team-card pending">
+          <div class="team-info">
+            <span class="team-number">🏐</span>
+            <span class="team-name">Todavía no hay jugadores buscando pareja.</span>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    players.forEach((player) => {
+
+      if (!player.name) return;
+
+      const card = document.createElement("div");
+      card.className = "team-card pending";
+
+      card.innerHTML = `
+        <div class="team-info free-agent-info">
+          <span class="team-number">🏐</span>
+
+          <span class="team-name">
+            ${player.name}<br>
+            <span class="free-agent-meta">
+              ${player.role || "Me adapto"} · ${player.side || "Me da igual"}
+            </span>
+
+            ${
+              player.comment
+                ? `<span class="free-agent-comment">“${player.comment}”</span>`
+                : ""
+            }
+          </span>
+        </div>
+      `;
+
+      freeAgentsList.appendChild(card);
+    });
+  } catch (error) {
+    console.error("No se pudieron cargar los free agents", error);
+  }
+}
+
+loadFreeAgents();

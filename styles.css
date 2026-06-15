@@ -738,6 +738,40 @@ summary {
   pointer-events: auto;
 }
 
+.free-agent-info {
+  align-items: flex-start;
+}
+
+.free-agent-meta {
+  display: block;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.free-agent-comment {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.form-subtitle {
+  margin-top: 0;
+  font-weight: 800;
+  color: var(--coral);
+}
+
+.free-agents-list-heading {
+  margin-top: 50px;
+}
+
 @media (max-width: 900px) {
   .form-wrapper,
   .section-highlight .split {

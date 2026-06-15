@@ -36,6 +36,7 @@
         <a href="#cartel">Cartel</a>
         <a href="#inscripcion">Inscripción</a>
         <a href="#parejas">Equipos</a>
+        <a href="#free-agents">Busco pareja</a>
         <a href="#pago">Pago</a>
       </div>
     </nav>
@@ -303,6 +304,80 @@
           <span class="team-status">Disponible</span>
         </div>
       </div>
+    </section>
+
+    <section id="free-agents" class="section">
+      <div class="form-wrapper">
+        <div class="form-intro">
+          <p class="eyebrow">Busco pareja</p>
+
+          <h2>¿Vienes solo/a?</h2>
+
+          <p>
+            Si te apetece jugar pero todavía no tienes compañero/a,
+            apúntate aquí y te ayudamos a encontrar tu match (de vóley...).
+          </p>
+
+          <div class="notice">
+            <strong>Solo mostraremos tu nombre y preferencias.</strong>
+          </div>
+        </div>
+
+        <form id="freeAgentForm" class="form">
+          <label>
+            Nombre *
+            <input type="text" name="nombre" required>
+          </label>
+
+          <div class="grid-two">
+            <label>
+              Teléfono *
+              <input type="tel" name="telefono" required>
+            </label>
+
+            <label>
+              Email *
+              <input type="email" name="email" required>
+            </label>
+          </div>
+
+          <label>
+            Tipo de jugador/a
+            <select name="rol">
+              <option>Sin preferencia de rol</option>
+              <option>Defensa</option>
+              <option>Ataque/Bloqueo</option>
+            </select>
+          </label>
+
+          <label>
+            Lado preferido
+            <select name="lado">
+              <option>Sin preferencia de lado</option>
+              <option>Lado Derecho</option>
+              <option>Lado Izquierdo</option>
+            </select>
+          </label>
+
+          <label>
+            Comentario (se mostrará)
+            <textarea
+              name="comentario"
+              placeholder="Ej: Soy alto y bloqueo, también soy buen colocador. Busco alguien competitivo pero que sobre todo quiera echar un buen rato."
+            ></textarea>
+          </label>
+
+          <button id="freeAgentButton" class="btn btn-primary btn-full">
+            Buscar pareja
+          </button>
+        </form>
+      </div>
+
+      <div class="section-heading free-agents-list-heading">
+        <h3>Jugadores buscando pareja</h3>
+      </div>
+
+      <div id="freeAgentsList" class="registered-teams"></div>
     </section>
 
     <section id="pago" class="section section-payment">
