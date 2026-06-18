@@ -458,6 +458,23 @@ textarea:focus {
   gap: 12px;
 }
 
+.waiting-list-wrapper {
+  margin-top: 36px;
+}
+
+.waiting-list-heading {
+  margin-bottom: 18px;
+}
+
+.team-card.waiting .team-status {
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+.team-card.waiting {
+  border-left: 4px solid #6366f1;
+}
+
 .team-card {
   display: flex;
   justify-content: space-between;

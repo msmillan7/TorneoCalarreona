@@ -13,6 +13,9 @@ const maxTeams = document.querySelector("#maxTeams");
 const DEFAULT_SUBMIT_TEXT = "Enviar inscripción";
 const LOADING_SUBMIT_TEXT = "Enviando inscripción...";
 
+const waitingListWrapper = document.querySelector("#waitingListWrapper");
+const waitingListTeams = document.querySelector("#waitingListTeams");
+
 if (form) {
   form.action = CONFIG.registrationsApi;
 }
@@ -112,8 +115,11 @@ async function loadRegisteredTeams() {
     const response = await fetch(CONFIG.registrationsApi);
     const teams = await response.json();
 
+    const registeredTeams = teams.slice(0, CONFIG.maxTeams);
+    const waitingList = teams.slice(CONFIG.maxTeams);
+
     if (registeredCount) {
-      registeredCount.textContent = teams.length;
+      registeredCount.textContent = Math.min(teams.length, CONFIG.maxTeams);
     }
 
     if (availableCount) {
@@ -122,12 +128,16 @@ async function loadRegisteredTeams() {
 
     if (teams.length === 0) {
       renderEmptyState();
+
+      if (waitingListWrapper) waitingListWrapper.hidden = true;
+      if (waitingListTeams) waitingListTeams.innerHTML = "";
+
       return;
     }
 
     registeredTeamsContainer.innerHTML = "";
 
-    teams.forEach((team) => {
+    registeredTeams.forEach((team) => {
       const status = (team.status || "").toLowerCase();
 
       let cssClass = "pending";
@@ -153,6 +163,32 @@ async function loadRegisteredTeams() {
       `;
 
       registeredTeamsContainer.appendChild(card);
+    });
+
+    if (!waitingListWrapper || !waitingListTeams) return;
+
+    if (waitingList.length === 0) {
+      waitingListWrapper.hidden = true;
+      waitingListTeams.innerHTML = "";
+      return;
+    }
+
+    waitingListWrapper.hidden = false;
+    waitingListTeams.innerHTML = "";
+
+    waitingList.forEach((team, index) => {
+      const card = document.createElement("div");
+      card.className = "team-card waiting";
+
+      card.innerHTML = `
+        <div class="team-info">
+          <span class="team-number">${index + 1}</span>
+          <span class="team-name">${team.player1} / ${team.player2}</span>
+        </div>
+        <span class="team-status">Lista de espera</span>
+      `;
+
+      waitingListTeams.appendChild(card);
     });
   } catch (error) {
     console.error("No se pudieron cargar las parejas registradas", error);
